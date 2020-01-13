@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#stage {
+    position: absolute;
+    top: 5em;
+    bottom: 5em;
+    width: 30%;
+    background-color: #eeeeee;
+    left: 30%;
+}
+
+#bottomContainer {
+    position: absolute;
+    height: 3.5em;
+    bottom: 0;
+    width: 100%;
+    background-color: #444444;
+}
+
+#question {
+    position: absolute;
+    bottom: 0.55em;
+}
+
+#sendButton {
+    color: #ffffff;
+    font-size: 0.9em;
+    position: absolute;
+    bottom: 0.7em;
+    right: 0.5em;
+}
+
+#chatList {
+    overflow-y: auto;
+    height: 560px;
+    border: 0px solid #000000;
+}
+
+.my-words {
+    text-align: right;
+    background-color: #00ff00;
+    margin: 0.5em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    border-radius: 5px;
+}
+
+.bot-answer{
+    text-align: left;
+    background-color: #ffffff;
+    margin: 0.5em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    border-radius: 5px;
+}
