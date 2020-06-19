@@ -21,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 
 public class WeChatServlet extends HttpServlet {
 
-    private Logger logger = LogManager.getLogger(WeChatServlet.class);
+    private static Logger logger = LogManager.getLogger(WeChatServlet.class);
 
     @Override
     public void init(ServletConfig config) {
