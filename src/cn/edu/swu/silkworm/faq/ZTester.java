@@ -1,11 +1,14 @@
 package cn.edu.swu.silkworm.faq;
 
+import org.apache.lucene.analysis.tokenattributes.TermAttribute;
 import org.junit.Test;
+import org.wltea.analyzer.lucene.IKTokenizer;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
-public class Tester {
+public class ZTester {
 
     @Test
     public void searchTest() throws IOException {
@@ -35,6 +38,22 @@ public class Tester {
         for (Question question : questions) {
             System.out.println("Result : " + question.toString());
         }
+    }
+
+    @Test
+    public void tokenizerTest() {
+        String queryString = "蚕宝宝病了";
+        StringBuffer sb = new StringBuffer();
+        IKTokenizer tokenizer = new IKTokenizer(new StringReader(queryString), false);
+        try {
+            while (tokenizer.incrementToken()) {
+                TermAttribute termAtt = tokenizer.getAttribute(TermAttribute.class);
+                sb.append(termAtt.term()).append(" ");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        logger(sb.toString());
     }
 
     private void logger(String msg) {

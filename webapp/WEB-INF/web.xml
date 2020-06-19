@@ -19,4 +19,13 @@
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>weixinServlet</servlet-name>
+        <servlet-class>cn.edu.swu.silkworm.faq.WeixinServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>weixinServlet</servlet-name>
+        <url-pattern>/weixin</url-pattern>
+    </servlet-mapping>
+
 </web-app>
