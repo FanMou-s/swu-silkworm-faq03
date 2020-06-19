@@ -31,9 +31,17 @@ public class WeixinServlet extends HttpServlet {
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
 
-//        InputStream inputStream = request.getInputStream();
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-//        reader.readLine();
+        InputStream inputStream = request.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        reader.readLine();
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while((line = reader.readLine()) != null) {
+            sb.append(line);
+            sb.append("\n");
+        }
+        System.out.println(sb.toString());
+
         for (Enumeration<String> names = request.getParameterNames(); names.hasMoreElements(); ) {
             String name = names.nextElement();
             System.out.println("name:" + name);
