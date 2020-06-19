@@ -67,14 +67,10 @@ public class WeChatServlet extends HttpServlet {
         }
 
 
-
-
         for (Enumeration<String> names = request.getParameterNames(); names.hasMoreElements(); ) {
             String name = names.nextElement();
-            System.out.println("name:" + name);
-            System.out.println(request.getParameter(name));
+            System.out.println(name + ": " + request.getParameter(name));
         }
-
     }
 
 
