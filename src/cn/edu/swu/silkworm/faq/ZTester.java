@@ -1,5 +1,6 @@
 package cn.edu.swu.silkworm.faq;
 
+import cn.edu.swu.wechat.MessageType;
 import cn.edu.swu.wechat.WeChatRequest;
 import cn.edu.swu.wechat.WeChatRequestHandler;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
@@ -76,7 +77,11 @@ public class ZTester {
         WeChatRequest weixinRequest = weixinRequestHandler.getWeixinRequest();
 
         System.out.println(weixinRequest.toString());
+    }
 
+    @Test
+    public void messageType() {
+        System.out.println(MessageType.valueOf("video".toUpperCase()));
     }
 
     private void logger(String msg) {

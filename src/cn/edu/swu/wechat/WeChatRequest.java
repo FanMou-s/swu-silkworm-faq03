@@ -6,7 +6,7 @@ public class WeChatRequest {
     private String toUserName = null;
     private String fromUserName = null;
     private long createTime = Long.MIN_VALUE;
-    private String msgType = null;
+    private MessageType msgType = MessageType.UNKNOWN;
     private String content = null;
     private String msgId = null;
     private String picUrl = null;
@@ -37,11 +37,11 @@ public class WeChatRequest {
         this.createTime = createTime;
     }
 
-    public String getMsgType() {
+    public MessageType getMsgType() {
         return msgType;
     }
 
-    public void setMsgType(String msgType) {
+    public void setMsgType(MessageType msgType) {
         this.msgType = msgType;
     }
 

@@ -84,7 +84,9 @@ public class WeChatRequestHandler extends DefaultHandler {
                 this.weixinRequest.setCreateTime(Long.valueOf(elementValue));
                 break;
             case MsgType:
-                this.weixinRequest.setMsgType(elementValue);
+                if (elementValue != null) {
+                    this.weixinRequest.setMsgType(MessageType.valueOf(elementValue.toUpperCase()));
+                }
                 break;
             case Content:
                 this.weixinRequest.setContent(elementValue);
