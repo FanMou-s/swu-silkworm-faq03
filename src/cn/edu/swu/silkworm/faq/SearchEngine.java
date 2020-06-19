@@ -49,7 +49,7 @@ public class SearchEngine {
 
         // 从excel中读取需要检索的数据
         DataSetReader dataSetReader = new DataSetReader();
-        List<Question> questionList = dataSetReader.read("2020.1.xlsx");
+        List<Question> questionList = dataSetReader.read("silkworm-faq.xlsx");
 
         // 将数据写入到索引空间中
         for (Question question : questionList) {
