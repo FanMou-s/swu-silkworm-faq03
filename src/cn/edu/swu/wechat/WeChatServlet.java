@@ -52,6 +52,8 @@ public class WeChatServlet extends HttpServlet {
             WeChatRequestHandler weChatRequestHandler = new WeChatRequestHandler();
             saxParser.parse(request.getInputStream(), weChatRequestHandler);
             WeChatRequest weChatRequest = weChatRequestHandler.getWeixinRequest();
+
+            System.out.println(".................................");
             System.out.println(weChatRequest.toString());
 
             List<Question> questions = null;
@@ -59,6 +61,7 @@ public class WeChatServlet extends HttpServlet {
                 case TEXT:
                     SearchEngine searchEngine = SearchEngineFactory.getInstance();
                     questions = searchEngine.search(weChatRequest.getContent());
+                    break;
                 default:
                     questions = null;
             }
