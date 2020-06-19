@@ -1,13 +1,25 @@
 package cn.edu.swu.silkworm.faq;
 
+import org.xml.sax.SAXException;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.Enumeration;
 
 public class WeixinServlet extends HttpServlet {
+
+    @Override
+    public void init(ServletConfig config) {
+
+
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String signature = request.getParameter("signature");
@@ -29,11 +41,11 @@ public class WeixinServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
-        String nonce = request.getParameter("nonce");
+        String nonce     = request.getParameter("nonce");
+        String openid    = request.getParameter("openid");
 
         InputStream inputStream = request.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        reader.readLine();
         StringBuilder sb = new StringBuilder();
         String line = null;
         while((line = reader.readLine()) != null) {
@@ -41,6 +53,15 @@ public class WeixinServlet extends HttpServlet {
             sb.append("\n");
         }
         System.out.println(sb.toString());
+
+//        SAXParserFactory factory = SAXParserFactory.newInstance();
+//        try {
+//            SAXParser saxParser = factory.newSAXParser();
+//        } catch (ParserConfigurationException e) {
+//            e.printStackTrace();
+//        } catch (SAXException e) {
+//            e.printStackTrace();
+//        }
 
         for (Enumeration<String> names = request.getParameterNames(); names.hasMoreElements(); ) {
             String name = names.nextElement();
