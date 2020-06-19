@@ -1,4 +1,4 @@
-package cn.edu.swu.silkworm.faq;
+package cn.edu.swu.wechat;
 
 import org.apache.commons.codec.binary.Hex;
 
@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-public class WeixinService {
+public class WeChatService {
 
     private static final String TOKEN = "JinLuTechC313";
 

@@ -1,4 +1,4 @@
-package cn.edu.swu.silkworm.faq;
+package cn.edu.swu.wechat;
 
 import org.xml.sax.SAXException;
 
@@ -13,7 +13,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.Enumeration;
 
-public class WeixinServlet extends HttpServlet {
+public class WeChatServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) {
@@ -27,7 +27,7 @@ public class WeixinServlet extends HttpServlet {
         String nonce     = request.getParameter("nonce");
         String echoStr   = request.getParameter("echostr");
 
-        if (WeixinService.checkSignature(timestamp, nonce, signature)) {
+        if (WeChatService.checkSignature(timestamp, nonce, signature)) {
             PrintWriter out = response.getWriter();
             out.print(echoStr);
             out.flush();
@@ -44,24 +44,30 @@ public class WeixinServlet extends HttpServlet {
         String nonce     = request.getParameter("nonce");
         String openid    = request.getParameter("openid");
 
-        InputStream inputStream = request.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while((line = reader.readLine()) != null) {
-            sb.append(line);
-            sb.append("\n");
-        }
-        System.out.println(sb.toString());
-
-//        SAXParserFactory factory = SAXParserFactory.newInstance();
-//        try {
-//            SAXParser saxParser = factory.newSAXParser();
-//        } catch (ParserConfigurationException e) {
-//            e.printStackTrace();
-//        } catch (SAXException e) {
-//            e.printStackTrace();
+//        InputStream inputStream = request.getInputStream();
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+//        StringBuilder sb = new StringBuilder();
+//        String line = null;
+//        while((line = reader.readLine()) != null) {
+//            sb.append(line);
+//            sb.append("\n");
 //        }
+//        System.out.println(sb.toString());
+
+
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+            WeChatRequestHandler weixinRequestHandler = new WeChatRequestHandler();
+            saxParser.parse(request.getInputStream(), weixinRequestHandler);
+            WeChatRequest weixinRequest = weixinRequestHandler.getWeixinRequest();
+            System.out.println(weixinRequest.toString());
+        } catch (SAXException | ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+
+
 
         for (Enumeration<String> names = request.getParameterNames(); names.hasMoreElements(); ) {
             String name = names.nextElement();

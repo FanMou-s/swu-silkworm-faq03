@@ -1,9 +1,16 @@
 package cn.edu.swu.silkworm.faq;
 
+import cn.edu.swu.wechat.WeChatRequest;
+import cn.edu.swu.wechat.WeChatRequestHandler;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
 import org.junit.Test;
 import org.wltea.analyzer.lucene.IKTokenizer;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.List;
@@ -54,6 +61,22 @@ public class ZTester {
             e.printStackTrace();
         }
         logger(sb.toString());
+    }
+
+
+    @Test
+    public void xmlParse() throws ParserConfigurationException, SAXException, IOException {
+        String strXML = "<xml><ToUserName><![CDATA[gh_99f283298ae1]]></ToUserName><FromUserName><![CDATA[oLLBW0XYtUuoz9UpmSixw0LEBfVI]]></FromUserName><CreateTime>1592577377</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[蚕茧]]></Content><MsgId>22800227607571304</MsgId></xml>";
+
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser saxParser = factory.newSAXParser();
+        WeChatRequestHandler weixinRequestHandler = new WeChatRequestHandler();
+        saxParser.parse(new ByteArrayInputStream(strXML.getBytes()), weixinRequestHandler);
+
+        WeChatRequest weixinRequest = weixinRequestHandler.getWeixinRequest();
+
+        System.out.println(weixinRequest.toString());
+
     }
 
     private void logger(String msg) {

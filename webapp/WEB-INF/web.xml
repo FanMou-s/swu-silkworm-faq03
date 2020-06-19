@@ -20,11 +20,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>weixinServlet</servlet-name>
-        <servlet-class>cn.edu.swu.silkworm.faq.WeixinServlet</servlet-class>
+        <servlet-name>weChatServlet</servlet-name>
+        <servlet-class>cn.edu.swu.wechat.WeChatServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>weixinServlet</servlet-name>
+        <servlet-name>weChatServlet</servlet-name>
         <url-pattern>/weixin</url-pattern>
     </servlet-mapping>
 
