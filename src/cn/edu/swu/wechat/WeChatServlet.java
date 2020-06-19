@@ -3,6 +3,7 @@ package cn.edu.swu.wechat;
 import cn.edu.swu.silkworm.faq.Question;
 import cn.edu.swu.silkworm.faq.SearchEngine;
 import cn.edu.swu.silkworm.faq.SearchEngineFactory;
+import org.apache.logging.log4j.LogManager;
 import org.xml.sax.SAXException;
 
 import javax.servlet.ServletConfig;
@@ -16,8 +17,11 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.Enumeration;
 import java.util.List;
+import org.apache.logging.log4j.Logger;
 
 public class WeChatServlet extends HttpServlet {
+
+    private Logger logger = LogManager.getLogger(WeChatServlet.class);
 
     @Override
     public void init(ServletConfig config) {
@@ -73,8 +77,11 @@ public class WeChatServlet extends HttpServlet {
             sb.append("<CreateTime>" + (System.currentTimeMillis() / 1000) + "</CreateTime>");
             sb.append("<MsgType><![CDATA[text]]></MsgType>");
             if (questions != null && questions.size() > 0) {
+                Question question = questions.get(0);
+                logger.info("[" + weChatRequest.getContent() + "], [" + question.getQuestion() + "], [" + question.getAnswer() + "]");
                 sb.append("<Content><![CDATA[" + questions.get(0).getAnswer() + "]]></Content>");
             } else {
+                logger.info("[" + weChatRequest.getContent() + "], []");
                 sb.append("<Content><![CDATA[哈哈，问题把我难住了！]]></Content>");
             }
             sb.append("</xml>");
@@ -93,7 +100,4 @@ public class WeChatServlet extends HttpServlet {
             System.out.println(name + ": " + request.getParameter(name));
         }
     }
-
-
-
 }
