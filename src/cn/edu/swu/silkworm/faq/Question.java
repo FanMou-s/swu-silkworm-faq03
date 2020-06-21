@@ -73,6 +73,7 @@ public class Question {
             sb.append(keyword).append("\t");
         }
         sb.append(this.getAnswer()).append("\t");
+        sb.append(this.getMediaType());
         return sb.toString();
     }
 

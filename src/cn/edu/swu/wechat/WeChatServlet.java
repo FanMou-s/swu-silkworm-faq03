@@ -108,10 +108,12 @@ public class WeChatServlet extends HttpServlet {
             e.printStackTrace();
         }
 
+        /*
         for (Enumeration<String> names = request.getParameterNames(); names.hasMoreElements(); ) {
             String name = names.nextElement();
             System.out.println(name + ": " + request.getParameter(name));
         }
+        */
     }
 
     private String questionToXml(WeChatRequest weChatRequest, Question question) {

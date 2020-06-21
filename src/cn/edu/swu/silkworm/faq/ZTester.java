@@ -38,12 +38,14 @@ public class ZTester {
         queryString = "3龄蚕好长？";
         queryString = "3龄蚕的长度";
         queryString = "蚕的长度";
+        queryString = "蚕蛾图片";
 
         SearchEngine searchEngine = SearchEngineFactory.getInstance();
         List<Question> questions = searchEngine.search(queryString);
         System.out.println("Search : " + queryString);
         for (Question question : questions) {
-            System.out.println("Result : " + question.toString());
+            System.out.println(question.getMediaType());
+            //System.out.println("Result : " + question.toString());
         }
     }
 

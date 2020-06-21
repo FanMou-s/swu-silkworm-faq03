@@ -80,7 +80,7 @@ public class WeChatRequest {
         sb.append("CreateTime: ").append(this.getCreateTime()).append("\n");
         sb.append("MsgId: ").append(this.getMsgId()).append("\n");
         sb.append("MsgType: ").append(this.getMsgType()).append("\n");
-        sb.append("Content: ").append(this.getContent()).append("\n");
+        sb.append("Content: ").append(this.getContent());
         //sb.append("PicUrl: ").append(this.getPicUrl()).append("\n");
         //sb.append("MediaId: ").append(this.getMediaId()).append("\n");
         //sb.append("ThumbMediaId: ").append(this.getThumbMediaId());

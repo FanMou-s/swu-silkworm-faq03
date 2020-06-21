@@ -59,7 +59,7 @@ public class SearchEngine {
             Field keywords = new Field("keywords", question.getKeywordString(), Field.Store.YES, Field.Index.ANALYZED);
             Field answer = new Field("answer", question.getAnswer(), Field.Store.YES, Field.Index.ANALYZED);
             Field combine = new Field("combine", question.flat(), Field.Store.YES, Field.Index.ANALYZED);
-            Field mediaType = new Field("media", question.flat(), Field.Store.YES, Field.Index.ANALYZED);
+            Field mediaType = new Field("media", question.getMediaType(), Field.Store.YES, Field.Index.NOT_ANALYZED);
 
             doc.add(type);
             doc.add(ask);
