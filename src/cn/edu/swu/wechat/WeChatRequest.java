@@ -12,6 +12,7 @@ public class WeChatRequest {
     private String picUrl = null;
     private String mediaId = null;
     private String thumbMediaId = null;
+    private String openId = null;
 
     public String getToUserName() {
         return toUserName;
@@ -72,6 +73,10 @@ public class WeChatRequest {
     public String getThumbMediaId() { return thumbMediaId; }
 
     public void setThumbMediaId(String thumbMediaId) { this.thumbMediaId = thumbMediaId; }
+
+    public String getOpenId() { return openId; }
+
+    public void setOpenId(String openId) { this.openId = openId; }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();

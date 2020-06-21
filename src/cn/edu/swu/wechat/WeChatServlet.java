@@ -73,6 +73,7 @@ public class WeChatServlet extends HttpServlet {
             WeChatRequestHandler weChatRequestHandler = new WeChatRequestHandler();
             saxParser.parse(request.getInputStream(), weChatRequestHandler);
             WeChatRequest weChatRequest = weChatRequestHandler.getWeixinRequest();
+            weChatRequest.setOpenId(openid);
 
             System.out.println(".................................");
             System.out.println(weChatRequest.toString());
@@ -126,7 +127,7 @@ public class WeChatServlet extends HttpServlet {
     }
 
     private String buildFailedMessage(WeChatRequest weChatRequest) {
-        logger.info("[" + weChatRequest.getContent() + "], []");
+        logger.info("[" + weChatRequest.getOpenId() + "], [" + weChatRequest.getContent() + "], []");
 
         StringBuilder sb = new StringBuilder();
         sb.append("<xml>");
@@ -140,7 +141,7 @@ public class WeChatServlet extends HttpServlet {
     }
 
     private String buildTextMessage(WeChatRequest weChatRequest, Question question) {
-        logger.info("[" + weChatRequest.getContent() + "], [" + question.getQuestion() + "], [" + question.getAnswer() + "]");
+        logger.info("[" + weChatRequest.getOpenId() + "], [" + weChatRequest.getContent() + "], [" + question.getQuestion() + "]");
         System.out.println("Builder Text Message:");
         StringBuilder sb = new StringBuilder();
         sb.append("<xml>");
@@ -154,7 +155,7 @@ public class WeChatServlet extends HttpServlet {
     }
 
     private String buildImageMessage(WeChatRequest weChatRequest, Question question) {
-        logger.info("[" + weChatRequest.getContent() + "], [" + question.getQuestion() + "], [" + question.getAnswer() + "]");
+        logger.info("[" + weChatRequest.getOpenId() + "], [" + weChatRequest.getContent() + "], [" + question.getQuestion() + "]");
         String[] imageNames = question.getAnswer().split(",");
         String imageName = imageNames[(new Random()).nextInt(imageNames.length)];
         System.out.println("Builder Image Message: " + imageName);
