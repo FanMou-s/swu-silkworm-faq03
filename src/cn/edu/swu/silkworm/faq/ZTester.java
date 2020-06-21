@@ -39,8 +39,7 @@ public class ZTester {
         queryString = "3龄蚕的长度";
         queryString = "蚕的长度";
 
-        SearchEngine searchEngine = new SearchEngine();
-        searchEngine.startup();
+        SearchEngine searchEngine = SearchEngineFactory.getInstance();
         List<Question> questions = searchEngine.search(queryString);
         System.out.println("Search : " + queryString);
         for (Question question : questions) {
