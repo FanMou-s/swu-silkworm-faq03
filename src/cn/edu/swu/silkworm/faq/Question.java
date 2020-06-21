@@ -8,6 +8,7 @@ public class Question {
     private String question;
     private List<String> keywords = new ArrayList<>();
     private String answer;
+    private String mediaType;
 
     public String getType() {
         return type;
@@ -31,6 +32,14 @@ public class Question {
 
     public void setKeywords(List<String> keywords) {
         this.keywords = keywords;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public void addKeyword(String key) {

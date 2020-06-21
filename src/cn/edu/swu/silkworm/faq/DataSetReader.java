@@ -25,7 +25,8 @@ public class DataSetReader {
                 String question = row.getCell(index++).getStringCellValue();
                 String keyword1 = row.getCell(index++).getStringCellValue();
                 String keyword2 = row.getCell(index++).getStringCellValue();
-                String answer = row.getCell(index).getStringCellValue();
+                String answer   = row.getCell(index++).getStringCellValue();
+                String mediaType = row.getCell(index).getStringCellValue();
 
                 Question q = new Question();
                 q.setType(type);
@@ -33,6 +34,7 @@ public class DataSetReader {
                 q.addKeyword(keyword1);
                 q.addKeyword(keyword2);
                 q.setAnswer(answer);
+                q.setMediaType(mediaType);
 
                 questions.add(q);
             }

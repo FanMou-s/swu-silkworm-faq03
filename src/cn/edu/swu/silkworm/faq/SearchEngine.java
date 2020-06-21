@@ -59,12 +59,14 @@ public class SearchEngine {
             Field keywords = new Field("keywords", question.getKeywordString(), Field.Store.YES, Field.Index.ANALYZED);
             Field answer = new Field("answer", question.getAnswer(), Field.Store.YES, Field.Index.ANALYZED);
             Field combine = new Field("combine", question.flat(), Field.Store.YES, Field.Index.ANALYZED);
+            Field mediaType = new Field("media", question.flat(), Field.Store.YES, Field.Index.ANALYZED);
 
             doc.add(type);
             doc.add(ask);
             doc.add(keywords);
             doc.add(answer);
             doc.add(combine);
+            doc.add(mediaType);
 
             this.indexWriter.addDocument(doc);
         }
@@ -119,6 +121,7 @@ public class SearchEngine {
         question.setQuestion(doc.get("ask"));
         question.setKeywords(Arrays.asList(doc.get("keywords").split(",")));
         question.setAnswer(doc.get("answer"));
+        question.setMediaType(doc.get("media"));
         return question;
     }
 
