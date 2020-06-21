@@ -82,9 +82,11 @@ public class WeChatServlet extends HttpServlet {
                 case TEXT:
                     SearchEngine searchEngine = SearchEngineFactory.getInstance();
                     questions = searchEngine.search(weChatRequest.getContent());
+                    System.out.println("Find Answer: " + questions.size());
                     break;
                 default:
                     questions = null;
+                    System.out.println("Find Answer: " + 0);
             }
 
             String result = null;
@@ -95,6 +97,8 @@ public class WeChatServlet extends HttpServlet {
             if (result == null) {
                 result = this.buildFailedMessage(weChatRequest);
             }
+
+            System.out.println(result);
 
             response.setContentType("text/xml");
             response.setCharacterEncoding("UTF-8");
@@ -112,6 +116,7 @@ public class WeChatServlet extends HttpServlet {
 
     private String questionToXml(WeChatRequest weChatRequest, Question question) {
         String xml = null;
+        System.out.println("Answer Type: " + question.getMediaType());
         if (question.getMediaType().equalsIgnoreCase("text")) {
             xml = this.buildTextMessage(weChatRequest, question);
         } else if (question.getMediaType().equalsIgnoreCase("image")) {
@@ -136,7 +141,7 @@ public class WeChatServlet extends HttpServlet {
 
     private String buildTextMessage(WeChatRequest weChatRequest, Question question) {
         logger.info("[" + weChatRequest.getContent() + "], [" + question.getQuestion() + "], [" + question.getAnswer() + "]");
-
+        System.out.println("Builder Text Message:");
         StringBuilder sb = new StringBuilder();
         sb.append("<xml>");
         sb.append("<ToUserName><![CDATA[" + weChatRequest.getFromUserName() + "]]></ToUserName>");
@@ -151,11 +156,16 @@ public class WeChatServlet extends HttpServlet {
     private String buildImageMessage(WeChatRequest weChatRequest, Question question) {
         logger.info("[" + weChatRequest.getContent() + "], [" + question.getQuestion() + "], [" + question.getAnswer() + "]");
 
+
         String[] imageNames = question.getAnswer().split(",");
         String imageName = imageNames[(new Random()).nextInt(imageNames.length)];
+
+        System.out.println("Builder Image Message: " + imageName);
+
         try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("pics/" + imageName)){
             JSONObject jsonObject = this.weChatServiceAgent.uploadTempImage(inputStream);
             String mediaId = jsonObject.getString("media_id");
+            System.out.println("Media ID: " + jsonObject.toString());
 
             StringBuilder sb = new StringBuilder();
             sb.append("<xml>");
