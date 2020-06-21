@@ -182,7 +182,7 @@ public class WeChatServiceAgent {
             while ((line = reader.readLine()) != null) {
                 buffer.append(line);
             }
-            System.out.println(buffer.toString());
+            //System.out.println(buffer.toString());
             try {
                 return JSONObject.fromObject(buffer.toString());
             }catch (JSONException e) {
