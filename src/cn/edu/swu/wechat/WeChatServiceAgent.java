@@ -42,10 +42,10 @@ public class WeChatServiceAgent {
         this.appSecret = appSecret;
         this.token = token;
 
-//        this.accessToken = new AccessToken(
-//        "34_yNQXILg19o1s28-zQWvBtZiW0LpzRcWeFIZ2sM_mJVgnEvXuwA-6gEZzzsLnXifVItP0xxjmZnBLunoFC4KsR1B1sSrO407B8Rr5PpxwI9ZI0b1ypJG9xmG3PZmwmw8mj7YixSeRAl9Jmmf-VNMeAIADVU",
-//    7200
-//        );
+        this.accessToken = new AccessToken(
+        "34_B_8E2hZrcDiT5kksVDoMRZMzw3ZriPPCch9ELrznfPZpHv3CQeL14fCDM6YwFtwBQp_jwHm6aO_YVJDCF0hLh5LPReKzuRpmmBaxuKSLF2F4cq9FRuyHW46IdYHTq-1DAM_c8NzBlJwohNBjCSRcAIAVLK",
+    7200
+        );
     }
 
     public boolean checkSignature(String timestamp, String nonce, String signature) {
@@ -162,6 +162,7 @@ public class WeChatServiceAgent {
         // write out headers
         OutputStream out = new DataOutputStream(conn.getOutputStream());
         out.write(head);
+        System.out.println("write out header");
 
         // write out body
         int bytes = 0;
@@ -169,12 +170,14 @@ public class WeChatServiceAgent {
         while ((bytes = inputStream.read(bufferOut)) != -1) {
             out.write(bufferOut, 0, bytes);
         }
+        System.out.println("write out body");
 
         // write out foot
         byte[] foot = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("utf-8");
         out.write(foot);
         out.flush();
         out.close();
+        System.out.println("write out foot");
 
         // receive return message
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
@@ -183,7 +186,7 @@ public class WeChatServiceAgent {
             while ((line = reader.readLine()) != null) {
                 buffer.append(line);
             }
-
+            System.out.println(buffer.toString());
             try {
                 return JSONObject.fromObject(buffer.toString());
             }catch (JSONException e) {
