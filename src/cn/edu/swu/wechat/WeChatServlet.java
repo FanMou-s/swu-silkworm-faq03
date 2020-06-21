@@ -166,7 +166,7 @@ public class WeChatServlet extends HttpServlet {
 
         try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("pics/" + imageName)){
             System.out.println("Image InputStream: " + inputStream.toString());
-            JSONObject jsonObject = this.weChatServiceAgent.uploadTempImage(inputStream);
+            JSONObject jsonObject = this.weChatServiceAgent.uploadTempImage(inputStream, imageName);
             String mediaId = jsonObject.getString("media_id");
             System.out.println("Media ID: " + jsonObject.toString());
 

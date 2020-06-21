@@ -42,10 +42,10 @@ public class WeChatServiceAgent {
         this.appSecret = appSecret;
         this.token = token;
 
-        this.accessToken = new AccessToken(
-        "34_B_8E2hZrcDiT5kksVDoMRZMzw3ZriPPCch9ELrznfPZpHv3CQeL14fCDM6YwFtwBQp_jwHm6aO_YVJDCF0hLh5LPReKzuRpmmBaxuKSLF2F4cq9FRuyHW46IdYHTq-1DAM_c8NzBlJwohNBjCSRcAIAVLK",
-    7200
-        );
+//        this.accessToken = new AccessToken(
+//        "34_B_8E2hZrcDiT5kksVDoMRZMzw3ZriPPCch9ELrznfPZpHv3CQeL14fCDM6YwFtwBQp_jwHm6aO_YVJDCF0hLh5LPReKzuRpmmBaxuKSLF2F4cq9FRuyHW46IdYHTq-1DAM_c8NzBlJwohNBjCSRcAIAVLK",
+//    7200
+//        );
     }
 
     public boolean checkSignature(String timestamp, String nonce, String signature) {
@@ -94,7 +94,6 @@ public class WeChatServiceAgent {
 
     public JSONObject batchGetMaterial() throws IOException {
         String url = BATCH_GET_MATERIAL.replace("ACCESS_TOKEN", this.getAccessToken().getToken());
-        System.out.println(url);
         return doGet(url);
     }
 
@@ -103,9 +102,9 @@ public class WeChatServiceAgent {
         return doUpload(url, filePath);
     }
 
-    public JSONObject uploadTempImage(InputStream inputStream) throws IOException {
+    public JSONObject uploadTempImage(InputStream inputStream, String fileName) throws IOException {
         String url = UPLOAD.replace("ACCESS_TOKEN", this.getAccessToken().getToken()).replace("TYPE", "image");
-        return doUpload(url, inputStream, UUID.randomUUID().toString());
+        return doUpload(url, inputStream, fileName);
     }
 
     private static JSONObject doGet(String url) throws IOException {
@@ -156,13 +155,12 @@ public class WeChatServiceAgent {
         headerBuilder.append(BOUNDARY);
         headerBuilder.append("\r\n");
         headerBuilder.append("Content-Disposition: form-data; name=\"media\"; filename=\"" + fileName + "\"\r\n");
-        headerBuilder.append("Content-Type:application/octet-stream\r\n\r\n");
+        headerBuilder.append("Content-Type: application/octet-stream\r\n\r\n");
         byte[] head = headerBuilder.toString().getBytes("utf-8");
 
         // write out headers
         OutputStream out = new DataOutputStream(conn.getOutputStream());
         out.write(head);
-        System.out.println("write out header");
 
         // write out body
         int bytes = 0;
@@ -170,14 +168,12 @@ public class WeChatServiceAgent {
         while ((bytes = inputStream.read(bufferOut)) != -1) {
             out.write(bufferOut, 0, bytes);
         }
-        System.out.println("write out body");
 
         // write out foot
         byte[] foot = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("utf-8");
         out.write(foot);
         out.flush();
         out.close();
-        System.out.println("write out foot");
 
         // receive return message
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
@@ -199,11 +195,9 @@ public class WeChatServiceAgent {
     private static JSONObject responseToJSON(HttpResponse httpResponse) {
         JSONObject jsonObject = null;
         HttpEntity entity = httpResponse.getEntity();
-        System.out.println(entity.getContentLength());
         if (entity.getContentLength() > 0) {
             try {
                 String result = EntityUtils.toString(entity, "UTF-8");
-                System.out.println(result);
                 jsonObject = JSONObject.fromObject(result);
                 EntityUtils.consume(entity);
             } catch (JSONException | IOException e) {
