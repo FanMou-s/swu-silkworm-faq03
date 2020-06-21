@@ -98,8 +98,6 @@ public class WeChatServlet extends HttpServlet {
                 result = this.buildFailedMessage(weChatRequest);
             }
 
-            System.out.println(result);
-
             response.setContentType("text/xml");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(result);
@@ -157,19 +155,13 @@ public class WeChatServlet extends HttpServlet {
 
     private String buildImageMessage(WeChatRequest weChatRequest, Question question) {
         logger.info("[" + weChatRequest.getContent() + "], [" + question.getQuestion() + "], [" + question.getAnswer() + "]");
-
-
         String[] imageNames = question.getAnswer().split(",");
         String imageName = imageNames[(new Random()).nextInt(imageNames.length)];
-
         System.out.println("Builder Image Message: " + imageName);
 
         try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("pics/" + imageName)){
-            System.out.println("Image InputStream: " + inputStream.toString());
             JSONObject jsonObject = this.weChatServiceAgent.uploadTempImage(inputStream, imageName);
             String mediaId = jsonObject.getString("media_id");
-            System.out.println("Media ID: " + jsonObject.toString());
-
             StringBuilder sb = new StringBuilder();
             sb.append("<xml>");
             sb.append("<ToUserName><![CDATA[" + weChatRequest.getFromUserName() + "]]></ToUserName>");
