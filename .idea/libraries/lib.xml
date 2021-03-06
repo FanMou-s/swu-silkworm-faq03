@@ -1,0 +1,32 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/xmlbeans-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-compress-1.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/lucene-queries-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-collections4-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/poi-ooxml-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/lucene-queries-3.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/poi-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/IKAnalyzer3.2.3Stable.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/lucene-core-3.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/poi-ooxml-schemas-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-codec-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/log4j-api-2.10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/log4j-core-2.10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/httpclient-4.5.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/httpcore-4.4.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-beanutils-1.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-lang-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/ezmorph-1.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/webapp/WEB-INF/lib/httpmime-4.5.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

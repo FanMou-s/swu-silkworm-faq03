@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="silkworm">
+    <appenders>
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <ThresholdFilter level="info"/>
+            <PatternLayout pattern="[%p] - %m (%F:%L) %n"/>
+        </Console>
+        <File name="fileAppender" fileName="/var/log/swu-silkworm.log" append="true">
+            <ThresholdFilter level="info"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm} %m %n"/>
+        </File>
+    </appenders>
+
+    <loggers>
+        <root level="info">
+            <appender-ref ref="fileAppender"></appender-ref>
+        </root>
+    </loggers>
+</Configuration>
