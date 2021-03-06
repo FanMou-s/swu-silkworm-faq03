@@ -108,6 +108,7 @@ public class WeChatServiceAgent {
     }
 
     private static JSONObject doGet(String url) throws IOException {
+        System.out.println(url);
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpGet httpGet = new HttpGet(url);
             HttpResponse httpResponse = httpClient.execute(httpGet);
@@ -116,6 +117,7 @@ public class WeChatServiceAgent {
     }
 
     private static JSONObject doPost(String url, String outStr) throws IOException {
+        System.out.println(url);
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost(url);
             httpPost.setEntity(new StringEntity(outStr, "UTF-8"));
